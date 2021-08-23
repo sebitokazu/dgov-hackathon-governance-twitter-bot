@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/sebitokazu/dgov-hackathon-governance-twitter-bot#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "twit": "^2.2.11"
   }
