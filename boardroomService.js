@@ -3,7 +3,8 @@ axios.defaults.baseURL = process.env.BOARDROOM_API_URL
 
 const HTTP_STATUS_OK = 200;
 
-class BoardroomService{
+
+module.exports = class BoardroomService{
 
     async getProtocols(){
         console.log('Fetching /protocols');
@@ -59,7 +60,7 @@ class BoardroomService{
             return null;
     }
 
-    async getProposalsVotesByIf(refId){
+    async getProposalsVotesByID(refId){
         if(refId === null)
             return null;
 
@@ -83,12 +84,12 @@ class BoardroomService{
             return null;        
     }
 
-    async getVotersByProtocol(address){
-        if(address === null)
+    async getVotersByProtocol(name){
+        if(name === null)
             return null;
 
-        console.log(`Fetching /protocols/${address}/voters`);       
-        const res = await axios.get(`/protocols/${address}/voters`);
+        console.log(`Fetching /protocols/${name}/voters`);       
+        const res = await axios.get(`/protocols/${name}/voters`);
         if(res.status === HTTP_STATUS_OK)
             return res.data;
         else
@@ -114,6 +115,15 @@ class BoardroomService{
             return res.data;
         else
             return null;        
+    }
+
+    async getStats(){
+        console.log(`Fetching /stats`);    
+        const res = await axios.get(`/stats`);
+        if(res.status === HTTP_STATUS_OK)
+            return res.data;
+        else
+            return null;           
     }
 
 
